@@ -1,6 +1,10 @@
 version: '3'
 services:
-  nginx:
-    image: nginx:latest
+  reverse-proxy:
+    image: traefik:v3.1
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
     ports:
-      - "80:80"
+      - "80:80" # HTTP
+      - "8080:8080" # Web UI
